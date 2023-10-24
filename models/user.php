@@ -1,7 +1,7 @@
 <?php
 
 
-function search_user($email, $password)
+function find_user($email, $password)
 {
     try{
         //Obtener conexión a la base de datos
