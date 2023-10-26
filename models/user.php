@@ -1,7 +1,7 @@
 <?php
 
 
-function find_user($email, $password)
+function findUser($email, $password)
 {
     try{
         //Obtener conexión a la base de datos
@@ -11,7 +11,7 @@ function find_user($email, $password)
         $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password';";
 
         //Ejecutar SQL
-        $query = mysqli_query($db, $sql);
+        $query = mysqli_query($conn, $sql);
         
         return $query;
     } catch (\Throwable $error) {
