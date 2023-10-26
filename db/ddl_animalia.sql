@@ -126,11 +126,11 @@ CREATE TABLE attention_records(
     Treatment varchar(255),
     Note text,
     Visit_date date not null,
-    Creation_date datetime default current_timestamp,
+    Creation_date datetime not null default current_timestamp,
     primary key(Attention_record_ID),
     constraint pet_attention_records_FK 
     foreign key(Pet_ID_FK) references pets(Pet_ID),
-    constraint vet_attention_records_FK
+    constraint vets_attention_records_FK
     foreign key(Vet_RUT_FK) references vets(RUT),
     constraint status_attention_records_FK
     foreign key(Status_ID_FK) references status(Status_ID)
@@ -148,3 +148,4 @@ CREATE TABLE sessions(
     constraint vet_session_FK
     foreign key(Vet_RUT_FK) references vets(RUT)
 );
+
