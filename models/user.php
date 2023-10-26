@@ -8,7 +8,7 @@ function find_user($email, $password)
         require '../config/dbConnection.php'; 
 
         //Consulta SQL
-        $sql = "SELECT * FROM User WHERE email = '$email' AND password = '$password';";
+        $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password';";
 
         //Ejecutar SQL
         $query = mysqli_query($db, $sql);
