@@ -35,13 +35,53 @@ CREATE TABLE status(
     primary key(Status_ID)
 );
 
+CREATE TABLE roles(
+    Rol_ID int(10) auto_increment not null,
+    Name varchar(80) not null,
+    primary key(Rol_ID)
+)
+
+CREATE TABLE user_accounts(
+    Account_ID int(10) auto_increment not null,
+    Email varchar(255) not null,
+    Password varchar(80) not null,
+    Rol_ID_FK int(10) not null,
+    primary key(Session_ID),
+    constraint user_rol_fk 
+    foreign key(Rol_ID_FK) references roles(Rol_ID)
+);
+
 CREATE TABLE vets(
     RUT int(9) not null,
     Name varchar(30) not null,
     Surname varchar(30) not null,
-    primary key(RUT)
+    Vet_account_ID_FK int(10) not null,
+    primary key(RUT),
+    constraint vets_account_fk
+    foreign key(Vet_account_ID_FK) references user_accounts(Account_ID)
 );
 
+CREATE TABLE vets_phones(
+    Vet_phones_ID int(10) auto_increment not null,
+    Vet_RUT_FK int(9) not null,
+    Phone_ID_FK int(9) not null,
+    primary key(Vet_phones_ID),
+    constraint vets_phones_FK
+    foreign key(Vet_RUT_FK) references vets(RUT),
+    constraint phone_vets_FK  
+    foreign key(Phone_ID_FK) references phones(Phone_ID)
+);
+
+CREATE TABLE vets_addresses(
+    Vet_address_ID int(10) auto_increment not null,
+    Vet_RUT_FK int(9) not null,
+    Address_ID_FK int(10) not null,
+    primary key(Vet_address_ID),
+    constraint vets_address_FK
+    foreign key(Vet_RUT_FK) references vets(RUT),
+    constraint address_vet_FK  
+    foreign key(Address_ID_FK) references addresses(Address_ID)
+);
 
 CREATE TABLE pets(
     Pet_ID int(10) auto_increment not null,
@@ -58,7 +98,10 @@ CREATE TABLE users(
     RUT int(9) not null,
     Name varchar(30) not null,
     Surname varchar(30),
-    primary key(RUT)
+    User_account_ID_FK int(10) not null,
+    primary key(RUT),
+    constraint users_account_fk
+    foreign key(User_account_ID_FK) references user_accounts(Account_ID)
 );
 
 CREATE TABLE users_pets(
@@ -95,27 +138,6 @@ CREATE TABLE users_phones(
     foreign key(Phone_ID_FK) references phones(Phone_ID)
 );
 
-CREATE TABLE vets_phones(
-    Vet_phones_ID int(10) auto_increment not null,
-    Vet_RUT_FK int(9) not null,
-    Phone_ID_FK int(9) not null,
-    primary key(Vet_phones_ID),
-    constraint vets_phones_FK
-    foreign key(Vet_RUT_FK) references vets(RUT),
-    constraint phone_vets_FK  
-    foreign key(Phone_ID_FK) references phones(Phone_ID)
-);
-
-CREATE TABLE vets_addresses(
-    Vet_address_ID int(10) auto_increment not null,
-    Vet_RUT_FK int(9) not null,
-    Address_ID_FK int(10) not null,
-    primary key(Vet_address_ID),
-    constraint vets_address_FK
-    foreign key(Vet_RUT_FK) references vets(RUT),
-    constraint address_vet_FK  
-    foreign key(Address_ID_FK) references addresses(Address_ID)
-);
 
 CREATE TABLE attention_records(
     Attention_record_ID int(10) auto_increment not null,
@@ -136,16 +158,4 @@ CREATE TABLE attention_records(
     foreign key(Status_ID_FK) references status(Status_ID)
 );
 
-CREATE TABLE sessions(
-    Session_ID int(10) auto_increment not null,
-    Email varchar(255) not null,
-    Password varchar(80) not null,
-    User_RUT_FK int(9),
-    Vet_RUT_FK int(10),
-    primary key(Session_ID),
-    constraint user_session_FK
-    foreign key(User_RUT_FK) references users(RUT), 
-    constraint vet_session_FK
-    foreign key(Vet_RUT_FK) references vets(RUT)
-);
 

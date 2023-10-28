@@ -1,10 +1,23 @@
+-- Add proof roles
+INSERT INTO roles(name) VALUES("Admin"),
+							  ("Vet"),
+							  ("User");
+
+
+-- Add proof credentials
+INSERT INTO user_accounts(Email, Password, Rol_ID_FK) VALUES('pepitoexample@example.com', '1234', 2),
+															('danielcossin@example.com', '1234', 2),
+															('andrewexaus@example.com', '1234', 3),
+															('chrisandromiu@example.com', '1234', 3);
+
+
 -- Add proof users
-INSERT INTO users VALUES(238923984, 'Andrew', 'Exaus'),
-                        (273988239, 'Chris', 'Andromiu');
+INSERT INTO users(RUT, Name, Surname, User_account_ID_FK) VALUES(238923984, 'Andrew', 'Exaus', 3),
+                        										(273988239, 'Chris', 'Andromiu', 4);
 
 -- Add proof vets
-INSERT INTO vets VALUES(246691378, 'Pepito', 'Example'),
-					   (234356781, 'Daniela', 'Cossin');
+INSERT INTO vets(RUT, Name, Surname, Vet_account_ID_FK) VALUES(246691378, 'Pepito', 'Example', 1),
+					   										  (234356781, 'Daniela', 'Cossin', 2);
 
 -- Add proofs species
 INSERT INTO species(Specie) VALUES('Canis'),
@@ -40,9 +53,7 @@ INSERT INTO users_pets(User_RUT_FK, Pet_ID_FK) VALUES(238923984, 1),
 													 (238923984, 3),
 													 (273988239, 4);
                 
+SELECT tb.User_RUT_FK, ta.Pet_ID, ta.Name, ta.Genre, ta.Age, tc.Race FROM pets AS ta INNER JOIN users_pets AS tb ON ta.Pet_ID = tb.Pet_ID_FK INNER JOIN races AS tc ON ta.Race_ID_FK = tc.Race_ID WHERE tb.User_RUT_FK = 238923984;
+DESCRIBE pets;
 
--- Add proof credentials
-INSERT INTO sessions(Email, Password, User_RUT_FK, Vet_RUT_FK) VALUES('pepitoexample@example.com', '1234', null, 246691378),
-																     ('danielcossin@example.com', '1234', null, 234356781),
-																     ('andrewexaus@example.com', '1234', 238923984, null),
-																     ('chrisandromiu@example.com', '1234', 273988239, null);
+SELECT * FROM sessions;
