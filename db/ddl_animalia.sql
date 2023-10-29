@@ -8,12 +8,12 @@ CREATE TABLE species(
     primary key(Specie_ID)
 );
 
-CREATE TABLE races(
-    Race_ID int(10) auto_increment not null,
-    Race varchar(50) not null,
+CREATE TABLE breeds(
+    Breed_ID int(10) auto_increment not null,
+    Breed varchar(50) not null,
     Specie_ID_FK int(10) not null,
-    primary key(Race_ID),
-    constraint races_species_FK 
+    primary key(breed_ID),
+    constraint breed_species_FK 
     foreign key(Specie_ID_FK) references species(Specie_ID)
 );
 
@@ -39,14 +39,14 @@ CREATE TABLE roles(
     Rol_ID int(10) auto_increment not null,
     Name varchar(80) not null,
     primary key(Rol_ID)
-)
+);
 
 CREATE TABLE user_accounts(
     Account_ID int(10) auto_increment not null,
     Email varchar(255) not null,
     Password varchar(80) not null,
     Rol_ID_FK int(10) not null,
-    primary key(Session_ID),
+    primary key(Account_ID),
     constraint user_rol_fk 
     foreign key(Rol_ID_FK) references roles(Rol_ID)
 );
@@ -86,12 +86,12 @@ CREATE TABLE vets_addresses(
 CREATE TABLE pets(
     Pet_ID int(10) auto_increment not null,
     Name varchar(30) not null,
-    Genre varchar(30) not null,
+    Sex varchar(30) not null,
     Age int(3) not null,
-    Race_ID_FK int(10) not null,
+    Breed_ID_FK int(10) not null,
     primary key(Pet_ID),
     constraint pet_race_fk 
-    foreign key(Race_ID_FK) references races(Race_ID)
+    foreign key(Breed_ID_FK) references breeds(Breed_ID)
 );
 
 CREATE TABLE users(

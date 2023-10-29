@@ -24,13 +24,13 @@ INSERT INTO species(Specie) VALUES('Canis'),
 								  ('Felidae');
         
 -- Add proofs races
-INSERT INTO races(Race, Specie_ID_FK) VALUES('Kai Ken', 1),
+INSERT INTO breeds(Breed, Specie_ID_FK) VALUES('Kai Ken', 1),
 											('Australian Mist', 2),
 											('Husky', 1),
 											('Bengali', 2);
 
 -- Add proof pets
-INSERT INTO pets(Name, Genre, Age, Race_ID_FK) VALUES('Tony', 'Male', 2, 1),
+INSERT INTO pets(Name, Sex, Age, Breed_ID_FK) VALUES('Tony', 'Male', 2, 1),
 													 ('Martha', 'Female', 1, 4),
 													 ('Masha', 'Female', 4, 1),
 													 ('Princess', 'Female', 2, 3);
@@ -53,7 +53,7 @@ INSERT INTO users_pets(User_RUT_FK, Pet_ID_FK) VALUES(238923984, 1),
 													 (238923984, 3),
 													 (273988239, 4);
                 
-SELECT tb.User_RUT_FK, ta.Pet_ID, ta.Name, ta.Genre, ta.Age, tc.Race FROM pets AS ta INNER JOIN users_pets AS tb ON ta.Pet_ID = tb.Pet_ID_FK INNER JOIN races AS tc ON ta.Race_ID_FK = tc.Race_ID WHERE tb.User_RUT_FK = 238923984;
+SELECT tb.User_RUT_FK, ta.Pet_ID, ta.Name, ta.Sex, ta.Age, tc.Breed FROM pets AS ta INNER JOIN users_pets AS tb ON ta.Pet_ID = tb.Pet_ID_FK INNER JOIN breeds AS tc ON ta.Breed_ID_FK = tc.Breed_ID WHERE tb.User_RUT_FK = 238923984;
 DESCRIBE pets;
 
-SELECT * FROM sessions;
+SELECT * FROM User_accounts;
