@@ -1,5 +1,5 @@
 <?php
-    require '../models/sessions.php';
+    require '../models/userAccounts.php';
     //Iniciar sesión para credenciales
     session_start();
 
@@ -10,27 +10,36 @@
             $email = $_POST['email'];
             $password = $_POST['password'];
 
-            //Buscar la sesión en la bd
-            $session = getSession($email, $password);
+            //Validar las credenciales en la base de datos
+            $credentials = getCredentials($email, $password);
             
             //Acreditar que el usuario existe en la base de datos para brindarle acceso
-            if(!$session){
+            if(!$credentials){
                 //Reenviar de nuevo al login
-                header('Location: ../index.php');
+                header("Location: ../index.php");
                 exit;
                 //Si existe la sesión
             } else {
                 //Volver accesibles los datos de la consulta
-                $session = $session->fetch_assoc();
+                $credentials = $credentials->fetch_assoc();
                 
-                //Validar si el usuario es persona particular o veterinario
-                if($session['User_RUT_FK'] != null){
+                echo $credentials['Rol'];
+                //Validar el rol de la cuenta
+                if($credentials['Rol'] == 'User'){
                     //Es persona particular
+                    //Traer la información del perfil
+                    require '../models/users.php';
+                    
+                    $profile = getUserByAccountID($credentials['Account_ID']);
+                    $profile = $profile->fetch_assoc();
+
                     //Guardar la sesión para realizar peticiones a la bd con el usuario loggeado
-                    $_SESSION['Rol'] = 'User';
-                    $_SESSION['RUT'] = $session['User_RUT_FK'];
-                    $_SESSION['Email'] = $session['Email'];
-                    $_SESSION['Password'] = $session['Password'];
+                    $_SESSION['Rol'] = $credentials['Rol'];
+                    $_SESSION['AccountID'] = $credentials['Account_ID'];
+                    $_SESSION['RUT'] = $profile['RUT'];
+                    $_SESSION['Name'] = $profile['Name'];
+                    $_SESSION['Surname'] = $profile['Surname'];
+                    
                     header("Location: ../views/pets.php");
                     exit;
                 } else {

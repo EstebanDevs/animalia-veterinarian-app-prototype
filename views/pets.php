@@ -9,11 +9,11 @@
         exit;
     }
     //Esta loggeado 
-    //Traer los metodos para interactuar con el modelo de pets
-    require '../controllers/petsController.php';
+    //Traer los metodos para interactuar con el modelo de pets y los usuarios
+    require '../models/pets.php';
 
     //Obtener las mascotas que pertenecen al usuario de la sesión actual
-    $userPets = getUserPets();
+    $userPets = getUserPetsByRUT($_SESSION['RUT']);
 
 ?>
 
@@ -25,7 +25,8 @@
     <title>Document</title>
 </head>
 <body>
-    <?php echo $_SESSION['Email']; ?>
+    <?php echo $_SESSION['Name']; ?>
+    <?php echo $_SESSION['Surname']; ?>
     <?php while ($card = mysqli_fetch_assoc($userPets)) {?>
         <div> 
             <p><?php echo $card['Name'];?></p>

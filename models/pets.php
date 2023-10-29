@@ -14,13 +14,10 @@ function getUserPetsByRUT($RUT)
                     ON ta.Pet_ID = tb.Pet_ID_FK 
                 INNER JOIN breeds AS tc 
                     ON ta.Breed_ID_FK = tc.Breed_ID 
-                WHERE tb.User_RUT_FK = 238923984;";
+                WHERE tb.User_RUT_FK = $RUT;";
 
         //Ejecutar SQL
         $query = mysqli_query($conn, $sql);
-
-        //Cerrar la conexión a la base de datos
-        $conn.close();
         
         return $query;
     } catch (\Throwable $error) {
