@@ -104,7 +104,7 @@ header{
     height: 100%;
 }
 
-.addbtn{
+.addBtn{
     background-color: var(--dark-color);
     border: 5px solid;
     position: fixed;

@@ -60,7 +60,7 @@
     <!-- to contain and control the cards -->
     <main id="cardmain">
         <!--🙌🏽 para ver el formulario, remover la clase 'hide'-->
-        <aside class="formdiv hide">
+        <aside class="formdiv hide" id='addform'>
             <h1 class="form_title">Conozcamos a tu peludito</h1>
             <p>¡Cuéntanos un poco sobre tu mascota para poder crear su ficha!</p>
             <form action="../controllers/addPet.php" method="post" id="pet_form">
@@ -89,12 +89,12 @@
         </aside>
 
         <!--🙌🏽 para ver el formulario de actualización, remover la clase 'hide'-->
-        <aside class="formdiv">
+        <aside class="formdiv hide" id="updateform">
             <h1 class="form_title">¿Cometiste algún error al rellenar la ficha de tu mascota?</h1>
             <p>No te preocupes, actualiza los campos a continuación para corregirlo.</p>
             <form action="../controllers/updatePet.php" method="post" id="pet_form" class="updateForm">
                   <input type="text" class="form_field" name="Name" required placeholder="Nombre"><br><br>
-                    <input type="number" name="PetID" id="PetID" value='' hidden>
+                    <input type="number" name="PetID" id="PetID" hidden>
                 <div class="form_radio">
                   <label>Sexo:</label>
                   <input type="radio" id="macho" name="Sex" value="Macho">
@@ -128,15 +128,16 @@
                         <?php echo $pet['Name'];?>
                     </h1>
                     <p class="card-details_description">
-                        <?php echo $pet['Name'];?>, 
-                        <?php echo $pet['Sex'];?>
-                        de <?php echo $pet['Age'];?> años
+                        <span class="hide petID"><?php echo $pet['Pet_ID'] ?></span>
+                        <span id="cardName"><?php echo $pet['Name'];?></span>, 
+                        <span id="cardSex"><?php echo $pet['Sex'];?></span>
+                        de <span id='cardAge'><?php echo $pet['Age'];?></span> años
                         de raza <?php echo $pet['Breed'];?> 
                     </p>
                 </div>
 
                 <aside class="card-options">
-                    <i onClick="editPost(this)" class="fas fa-edit"></i>
+                    <i onClick="editPet(this)" class="fas fa-edit editBtn"></i>
                     <!-- <i onClick= "deletePets(<?php //echo $pet['pet_id']; ?>)"  class="fas fa-trash-alt"></i> -->
                     <form method="post">
                     <!-- action="index?mensaje=Entrada eliminada correctamente!" -->
@@ -149,11 +150,12 @@
     </main>
 
         <!-- 🐱‍👤 (otra cosa que no logre decifrar, igual que mi vida jasj)el beat solo con el hover -->
-    <div class="addbtn">
+    <div onClick='addPet()' class="addBtn">
         <!-- <span class="material-symbols-outlined btn_heart">
         favorite</span> -->
         <p class='btn_element'><strong>+</strong></p>
     </div>
     
+    <script src="../scripts/app.js"></script>
 </body>
 </html>
