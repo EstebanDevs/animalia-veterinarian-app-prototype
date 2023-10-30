@@ -5,12 +5,12 @@ function getUserByAccountID($AccountID){
         require '../config/dbConnection.php'; 
 
         //Consulta SQL
-        $sqlUser = "SELECT * FROM users WHERE User_account_ID_FK = $AccountID;";
+        $sql = "SELECT * FROM users WHERE User_account_ID_FK = $AccountID;";
 
         //Ejecutar SQL
-        $queryA = mysqli_query($conn, $sqlUser);
+        $query = mysqli_query($conn, $sql);
         
-        return $queryA;
+        return $query;
     } catch (\Throwable $error) {
         var_dump($error);
     }

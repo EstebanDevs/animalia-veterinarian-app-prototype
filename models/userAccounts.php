@@ -20,7 +20,7 @@ function getCredentials($email, $password)
 
         //Ejecutar SQL
         $query = mysqli_query($conn, $sql);
-        
+
         return $query;
     } catch (\Throwable $error) {
         var_dump($error);
