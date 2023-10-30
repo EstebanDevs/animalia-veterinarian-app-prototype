@@ -3,10 +3,9 @@
 function getUserPetsByRUT($RUT)
 {
     try{
-        //Obtener conexión a la base de datos
+
         require 'dbConnection.php'; 
 
-        //Consulta SQL
         $sql = "SELECT 
                     tb.User_RUT_FK, ta.Pet_ID, ta.Name, ta.Sex, ta.Age, tc.Breed 
                 FROM pets AS ta 
@@ -16,7 +15,6 @@ function getUserPetsByRUT($RUT)
                     ON ta.Breed_ID_FK = tc.Breed_ID 
                 WHERE tb.User_RUT_FK = $RUT;";
 
-        //Ejecutar SQL
         $query = mysqli_query($conn, $sql);
         
         return $query;
@@ -28,16 +26,28 @@ function getUserPetsByRUT($RUT)
 function deletePets($id)
 {
     try {
-        //Obtener conexion
         require 'dbConnection.php';
-
-        //Consulta SQL
         $sql = "DELETE FROM pets WHERE pet_id = {$id};";
-
-        //Ejecutar consulta
         $query = mysqli_query($conn, $sql);
         return $query;
+
     } catch (\Throwable $thr) {
         var_dump($thr);
     }
+}
+
+function addPet($User_RUT, $Name, $Sex, $Age)
+{
+    try {
+        require 'dbConnection.php';
+
+        $sql = "CALL SP_Insert_Pet($User_RUT,'$Name','$Sex',$Age);";
+
+        $query = mysqli_query($conn, $sql);
+        return $query;
+
+    } catch (\Throwable $thr) {
+        var_dump($thr);
+    }
+
 }

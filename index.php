@@ -1,8 +1,11 @@
 <?php
     require 'pets.php';
     require 'dbConnection.php';
-    $message = $_GET['message'] ?? null;
+    $Name = '';
+    $Age = '';
+    $Sex = '';
     // Fixed RUT to test
+    $User_RUT = 238923984;
     $getUserPet =  getUserPetsByRUT(238923984);
 
     if($_SERVER['REQUEST_METHOD']=='POST'){
@@ -25,7 +28,6 @@
     <!-- importados -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 
@@ -43,29 +45,28 @@
 
     </header>
 
-    <?php if($message){echo $message;}?>
 
    
     <!-- to contain and control the cards -->
     <main id="cardmain">
         <!--🙌🏽 para ver el formulario, remover la clase 'hide'-->
-        <aside class="formdiv hide">
+        <aside class="formdiv">
             <h1 class="form_title">Conozcamos a tu peludito</h1>
             <p>¡Cuéntanos un poco sobre tu mascota para poder crear su ficha!</p>
-            <form action="-" method="post" id="pet_form">
-                  <input type="text" class="form_field" name="nombre" required placeholder="Nombre"><br><br>
+            <form action="create.php" method="post" id="pet_form">
+                  <input type="text" class="form_field" name="Name" required placeholder="Nombre" value="<?php echo $Name;?>" id="Name"><br><br>
               
                 <div class="form_radio">
                   <label>Sexo:</label>
-                  <input type="radio" id="macho" name="sexo" value="Macho">
+                  <input type="radio" id="macho" name="Sex" value="Macho">
                   <label for="macho">Macho</label>
-                  <input type="radio" id="hembra" name="sexo" value="hembra">
+                  <input type="radio" id="hembra" name="Sex" value="Hembra">
                   <label for="hembra">Hembra</label><br><br>
                 </div>
 
-                  <input type="number" class="form_field" name="edad" required pattern="\d+" placeholder="Edad"><br><br>
+                  <input type="number" class="form_field" name="Age" required placeholder="Edad"><br><br>
             
-                  <input type="text" class="form_field" id="raza" name="raza" placeholder="Raza"><br><br>
+                  <!-- <input type="text" class="form_field" id="raza" name="raza" placeholder="Raza"><br><br> -->
               
                   <!-- <input type="text" class="form_field" name="color" class="form_field" placeholder="Color"><br><br> -->
               
@@ -102,7 +103,7 @@
                 <form method="post">
                 <!-- action="index?mensaje=Entrada eliminada correctamente!" -->
                     <input type="hidden" name="Pet_ID" value="<?php echo $pet['Pet_ID'];?>">
-                    <button type="submit" class="fa fa-trash rojo no-btn"></button>
+                    <button type="submit" class="fa fa-trash icon-btn"></button>
                 </form>
                 
 
