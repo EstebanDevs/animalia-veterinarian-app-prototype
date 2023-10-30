@@ -8,7 +8,7 @@ function getUserPetsByRUT($RUT)
 
         //Consulta SQL
         $sql = "SELECT 
-                    tb.User_RUT_FK, ta.Pet_ID, ta.Name, ta.Sex, ta.Age, tc.Breed 
+                    ta.Pet_ID, tb.User_RUT_FK, ta.Pet_ID, ta.Name, ta.Sex, ta.Age, tc.Breed 
                 FROM pets AS ta 
                 INNER JOIN users_pets AS tb 
                     ON ta.Pet_ID = tb.Pet_ID_FK 
@@ -25,3 +25,38 @@ function getUserPetsByRUT($RUT)
     }
 }
 
+function deletePet($id)
+{
+    try {
+        //Obtener conexion
+        require '../config/dbConnection.php';
+
+        //Consulta SQL
+        $sql = "DELETE FROM pets WHERE pet_id = $id;";
+
+        //Ejecutar consulta
+        $query = mysqli_query($conn, $sql);
+        return $query;
+    } catch (\Throwable $thr) {
+        var_dump($thr);
+    }
+}
+
+function addPet($User_RUT, $Name, $Sex, $Age){
+
+    try {
+
+        require '../config/dbConnection.php';
+
+        $sql = "CALL SP_Insert_Pet($User_RUT,'$Name','$Sex',$Age);";
+
+        $query = mysqli_query($conn, $sql);
+
+
+    } catch (\Throwable $thr) {
+
+        var_dump($thr);
+
+    }
+
+}

@@ -113,7 +113,7 @@ CREATE TABLE users_pets(
     constraint user_RUT_pets_FK 
     foreign key(User_RUT_FK) references users(RUT),
     constraint pet_ID_user_FK
-    foreign key(Pet_ID_FK) references pets(Pet_ID)
+    foreign key(Pet_ID_FK) references pets(Pet_ID) ON DELETE CASCADE
 );
 
 CREATE TABLE users_addresses(
@@ -151,7 +151,7 @@ CREATE TABLE attention_records(
     Creation_date datetime not null default current_timestamp,
     primary key(Attention_record_ID),
     constraint pet_attention_records_FK 
-    foreign key(Pet_ID_FK) references pets(Pet_ID),
+    foreign key(Pet_ID_FK) references pets(Pet_ID) ON DELETE CASCADE,
     constraint vets_attention_records_FK
     foreign key(Vet_RUT_FK) references vets(RUT),
     constraint status_attention_records_FK

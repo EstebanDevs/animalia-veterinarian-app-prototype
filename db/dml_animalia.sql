@@ -56,4 +56,14 @@ INSERT INTO users_pets(User_RUT_FK, Pet_ID_FK) VALUES(238923984, 1),
 SELECT tb.User_RUT_FK, ta.Pet_ID, ta.Name, ta.Sex, ta.Age, tc.Breed FROM pets AS ta INNER JOIN users_pets AS tb ON ta.Pet_ID = tb.Pet_ID_FK INNER JOIN breeds AS tc ON ta.Breed_ID_FK = tc.Breed_ID WHERE tb.User_RUT_FK = 238923984;
 DESCRIBE pets;
 
+SELECT ta.Email, ta.Password, tb.Name'Rol' FROM user_accounts AS ta INNER JOIN roles AS tb ON ta.Rol_ID_FK = tb.Rol_ID; 
+
+SELECT * FROM users WHERE User_account_ID_FK = 3;
+
 SELECT * FROM User_accounts;
+
+DESCRIBE pets;
+
+SELECT * FROM pets;
+
+SELECT * FROM users_pets;
