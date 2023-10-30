@@ -55,14 +55,11 @@
         </nav>
 
     </header>
-
-    <?php if($message){echo $message;}?>
-
    
     <!-- to contain and control the cards -->
     <main id="cardmain">
         <!--🙌🏽 para ver el formulario, remover la clase 'hide'-->
-        <aside class="formdiv">
+        <aside class="formdiv hide">
             <h1 class="form_title">Conozcamos a tu peludito</h1>
             <p>¡Cuéntanos un poco sobre tu mascota para poder crear su ficha!</p>
             <form action="../controllers/addPet.php" method="post" id="pet_form">
@@ -89,6 +86,35 @@
                   <input type="submit" value="Enviar" class="form_submit">
             </form> 
         </aside>
+
+        <!--🙌🏽 para ver el formulario de actualización, remover la clase 'hide'-->
+        <aside class="formdiv">
+            <h1 class="form_title">¿Cometiste algún error al rellenar la ficha de tu mascota?</h1>
+            <p>No te preocupes, actualiza los campos a continuación para corregirlo.</p>
+            <form action="../controllers/updatePet.php" method="post" id="pet_form" class="updateForm">
+                  <input type="text" class="form_field" name="Name" required placeholder="Nombre"><br><br>
+                    <input type="number" name="PetID" id="PetID" value='' hidden>
+                <div class="form_radio">
+                  <label>Sexo:</label>
+                  <input type="radio" id="macho" name="Sex" value="Macho">
+                  <label for="macho">Macho</label>
+                  <input type="radio" id="hembra" name="Sex" value="Hembra">
+                  <label for="hembra">Hembra</label><br><br>
+                </div>
+
+                  <input type="number" class="form_field" name="Age" required pattern="\d+" placeholder="Edad"><br><br>
+            
+                  <!-- <input type="text" class="form_field" id="raza" name="Raza" placeholder="Raza"><br><br> -->
+              
+                  <!-- <input type="text" class="form_field" name="color" class="form_field" placeholder="Color"><br><br> -->
+              
+                    <!-- 🐱‍👤tipo de animal y registro medico pendientes -->
+                  <!-- <label for="enfermedad">¿Tiene alguna enfermedad?</label>
+                  <textarea id="enfermedad" name="enfermedad"></textarea><br><br> -->
+              
+                  <input type="submit" value="Actualizar" class="form_submit">
+            </form> 
+        </aside>
     
 
         <?php 
@@ -97,29 +123,26 @@
             <div class="card">
                 <img src="./resources/dog.png" alt="foto" class="card-img">
                 <div class="card-details">
-                     <h1 class="card-details_name">
-                    <?php echo $pet['Name'];?>
+                    <h1 class="card-details_name">
+                        <?php echo $pet['Name'];?>
                     </h1>
                     <p class="card-details_description">
-                    <?php echo $pet['Name'];?>, 
-                    <?php echo $pet['Sex'];?>
-                    de <?php echo $pet['Age'];?> años
-                    de raza <?php echo $pet['Breed'];?> 
-                </p>
-                
-            </div>
+                        <?php echo $pet['Name'];?>, 
+                        <?php echo $pet['Sex'];?>
+                        de <?php echo $pet['Age'];?> años
+                        de raza <?php echo $pet['Breed'];?> 
+                    </p>
+                </div>
 
-            <aside class="card-options">
-                <i onClick="editPost(this)" class="fas fa-edit"></i>
-                <!-- <i onClick= "deletePets(<?php //echo $pet['pet_id']; ?>)"  class="fas fa-trash-alt"></i> -->
-                <form method="post">
-                <!-- action="index?mensaje=Entrada eliminada correctamente!" -->
-                    <input type="hidden" name="Pet_ID" value="<?php echo $pet['Pet_ID'];?>">
-                    <button type="submit" class="fa fa-trash icon-btn"></button>
-                </form>
-                
-
-            </aside>
+                <aside class="card-options">
+                    <i onClick="editPost(this)" class="fas fa-edit"></i>
+                    <!-- <i onClick= "deletePets(<?php //echo $pet['pet_id']; ?>)"  class="fas fa-trash-alt"></i> -->
+                    <form method="post">
+                    <!-- action="index?mensaje=Entrada eliminada correctamente!" -->
+                        <input type="hidden" name="Pet_ID" value="<?php echo $pet['Pet_ID'];?>">
+                        <button type="submit" class="fa fa-trash icon-btn"></button>
+                    </form> 
+                </aside>
             </div> 
             <?php } ?>  
     </main>

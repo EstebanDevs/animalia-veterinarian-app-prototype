@@ -60,3 +60,22 @@ function addPet($User_RUT, $Name, $Sex, $Age){
     }
 
 }
+
+function updatePet($PetID, $Name, $Sex, $Age){
+    try {
+
+        require '../config/dbConnection.php';
+
+        $sql = "UPDATE pets SET 
+                    Name='$Name', Sex='$Sex', Age=$Age 
+                WHERE Pet_ID=$PetID;";
+
+        $query = mysqli_query($conn, $sql);
+
+
+    } catch (\Throwable $thr) {
+
+        var_dump($thr);
+
+    }
+}
