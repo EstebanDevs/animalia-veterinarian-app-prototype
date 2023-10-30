@@ -51,7 +51,8 @@
 
         <nav class="nav">
             <a href="#">Contacto</a>
-            <a href="#">About Us</a>
+            <a href="#">Sobre nosotros</a>
+            <a href="../controllers/logOut.php">Cerrar sesión</a>
         </nav>
 
     </header>
