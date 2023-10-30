@@ -1,3 +1,10 @@
+<?php
+    require 'pets.php';
+    // Fixed RUT to test
+    $getUserPet =  getUserPetsByRUT(238923984);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +28,7 @@
 
         <nav class="nav">
             <a href="#">Contacto</a>
-            <a href="#">Profe ayuda</a>
+            <a href="#">About Us</a>
         </nav>
 
     </header>
@@ -30,7 +37,7 @@
     <!-- to contain and control the cards -->
     <main id="cardmain">
         <!--🙌🏽 para ver el formulario, remover la clase 'hide'-->
-        <aside class="formdiv hide">
+        <aside class="formdiv">
             <h1 class="form_title">Conozcamos a tu peludito</h1>
             <p>¡Cuéntanos un poco sobre tu mascota para poder crear su ficha!</p>
             <form action="-" method="post" id="pet_form">
@@ -59,61 +66,30 @@
         </aside>
     
 
-
-        <div class="card">
-            <img src="views/resources/dog.png" alt="foto" class="card-img">
-            <div class="card-details">
-                
-                <h1 class="card-details_name">
-                    Pepito
-                </h1>
-                <p class="card-details_description">
-                    Descripcion de Pepito, el perro o gato, lo que
+        <?php 
+            while($pet = mysqli_fetch_assoc($getUserPet)){ ?>
+            
+            <div class="card">
+                <img src="views/resources/dog.png" alt="foto" class="card-img">
+                <div class="card-details">
+                     <h1 class="card-details_name">
+                    <?php echo $pet['Name'];?>
+                    </h1>
+                    <p class="card-details_description">
+                    <?php echo $pet['Name'];?>, 
+                    <?php echo $pet['Sex'];?>
+                    de <?php echo $pet['Age'];?> años
+                    de raza <?php echo $pet['Breed'];?> 
                 </p>
+                
             </div>
 
             <aside class="card-options">
                 <i onClick="editPost(this)" class="fas fa-edit"></i>
                 <i onClick="deletePost(this)" class="fas fa-trash-alt"></i>
-            </aside>   
-        </div>
-        <div class="card">
-            <img src="views/resources/cat.png" alt="foto" class="card-img">
-            <div class="card-details">
-                
-
-                <h1 class="card-details_name">
-                    Pepito
-                </h1>
-                <p class="card-details_description">
-                    Descripcion de Pepito, el perro o gato, lo que
-                </p>
-            </div>
-
-            <aside class="card-options">
-                <i onClick="editPost(this)" class="fas fa-edit"></i>
-                <i onClick="deletePost(this)" class="fas fa-trash-alt"></i>
-            </aside>   
-        </div>
-        <div class="card">
-            <img src="views/resources/rabbit.png" alt="foto" class="card-img">
-            <div class="card-details">
-                
-
-                <h1 class="card-details_name">
-                    Pepito
-                </h1>
-                <p class="card-details_description">
-                    Descripcion de Pepito, el perro o gato, lo que
-                </p>
-            </div>
-
-            <aside class="card-options">
-                <i onClick="editPost(this)" class="fas fa-edit"></i>
-                <i onClick="deletePost(this)" class="fas fa-trash-alt"></i>
-            </aside>   
-        </div>
-       
+            </aside>
+            </div> 
+            <?php } ?>  
     </main>
 
         <!-- 🐱‍👤 (otra cosa que no logre decifrar, igual que mi vida jasj)el beat solo con el hover -->

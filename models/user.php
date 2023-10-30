@@ -1,23 +1,17 @@
 <?php
 
-
-function find_user($email, $password)
-{
+function getUserByAccountID($AccountID){
     try{
-        //Obtener conexión a la base de datos
         require '../config/dbConnection.php'; 
 
         //Consulta SQL
-        $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password';";
+        $sql = "SELECT * FROM users WHERE User_account_ID_FK = $AccountID;";
 
         //Ejecutar SQL
-        $query = mysqli_query($db, $sql);
+        $query = mysqli_query($conn, $sql);
         
         return $query;
     } catch (\Throwable $error) {
         var_dump($error);
     }
 }
-
-
-?>
