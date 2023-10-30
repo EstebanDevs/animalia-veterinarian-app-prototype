@@ -1,0 +1,108 @@
+/* Estilos para el contenedor de inicio de sesión */
+#login-container {
+  background-color: #A5E6D4;
+  padding: 20px;
+  width: 700px;
+  height: 400px;
+  margin: 0 auto;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Estilos para el elemento de ID "logo" */
+#logo {
+  margin-bottom: 40px;
+}
+
+/* Estilos para imágenes dentro del elemento con ID "logo" */
+#logo img {
+  max-width: 500px;
+}
+
+/* Estilos para el cuerpo de la página */
+body {
+  background-color: #009D9A;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-weight: bold;
+}
+
+/* Estilos para etiquetas */
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+/* Estilos para contenedores de entrada */
+.input-container {
+  position: relative;
+}
+
+/* Estilos para campos de texto de tipo "text" y "password" */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #000;
+  background-color: #A5E6D4;
+  margin: 5px 0;
+  border-radius: 5px;
+}
+
+/* Estilos para el botón de inicio de sesión */
+.login-button {
+  background-color: #009D9A;
+  color: #A5E6D4;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+/* Estilos para el botón de inicio de sesión al pasar el cursor sobre él */
+.login-button:hover {
+  background-color: #A5E6D4;
+  color: #009D9A;
+}
+
+/* Estilos para contenedores de entrada con posición flex */
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* Estilos para campos de texto de tipo "text" y "password" dentro de contenedores con posición flex */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #000;
+  background-color: #A5E6D4;
+  margin: 5px 0;
+  border-radius: 5px;
+}
+
+/* Estilos para el botón de inicio de sesión con posición flex */
+.login-button {
+  background-color: #009D9A;
+  color: #A5E6D4;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+/* Estilos para el botón de inicio de sesión al pasar el cursor sobre él con posición flex */
+.login-button:hover {
+  background-color: #A5E6D4;
+  color: #009D9A;
+}
