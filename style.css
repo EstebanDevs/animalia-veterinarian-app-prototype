@@ -1,0 +1,189 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+:root{
+    --primary-color: rgba(248, 255, 233, 1); 
+    --light-color: aliceblue;
+    --dark-color: rgba(0, 0, 0, 1);
+    --transparent-color: rgba(248, 255, 233, 0.6);
+
+
+}
+
+body{
+    background: url(resources/gato.jpg);
+    background-size: 100%;
+}
+
+header{
+    position: sticky;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 4;
+    top: 0px;
+    background-color: var(--primary-color);
+    margin-right: 0px;
+    font-size: 2rem;
+    padding: 3rem;
+    
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    font-size: 4.5rem;
+}
+
+#header_img{
+    width: 200px;
+    height: 200px;
+    margin: 0px 20px;
+}
+
+.nav{
+    font-size: 3rem;
+    margin-left: 50px; 
+}
+
+.nav a:hover{
+    color: var(--dark-color);
+}
+
+
+
+
+
+/* occupies all the body */
+/* OJO CON EL GRID */
+#cardmain{
+    margin-top: 1.5%;
+    width: 100%;
+    display: grid;
+    align-items: center;
+
+}
+
+/* el white es solo de prueba pero si hay que cambiarlo */
+/* tambien se cambiara el tamaño de la fuente */
+/* the cards */
+.card{
+    background-color: var(--transparent-color);
+    border: 5px solid black;
+    margin: 1rem 2rem;
+    border-radius: 20px;
+    font-size: 3rem;
+    display: flex;
+    padding: 1rem;
+    
+
+
+}
+
+/* que la img no escale */
+.card-img{
+    width: 20%;
+    height: 20%;
+    position: relative;
+    top: -40px;
+
+}
+
+.card-details{
+    padding: 5rem;
+    width: 65%;
+}
+
+.card-options{
+    position: relative;
+    font-size: 5rem;
+    color:rgba(0, 0, 0, 1);
+
+
+}
+
+.addbtn{
+    background-color: var(--dark-color);
+    border: 5px solid;
+    position: fixed;
+    /* 🐱‍👤no lo decifre, pero no es importante ahora */
+    /* border-image: linear-gradient(45deg, purple, orange) 1;  */
+    border-radius: 50%;
+    bottom: 5%;
+    right: 5%;
+    width: 450px;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.btn_element{
+    font-size: 450px;
+    color: var(--light-color);
+}
+
+
+
+/* form things */
+.formdiv{
+    background-image: url(resources/doggo.jpg);
+    background-size: 100%;
+    z-index: 3;
+    background-color: var(--light-color);
+    height: 100%;
+    position: fixed;
+    margin-left: 0;
+    width: 30%;
+    padding: 5rem;
+    font-size: 3rem;
+    border-radius: 20px;
+    border: 20px solid var(--dark-color);
+
+}
+
+#pet_form{
+   margin: 50px 0px;
+   height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 3rem;
+
+}   
+
+
+/* reseting */
+.form_field{
+    border: none;
+    width: 80%;
+    height: 5%;
+    font-size: 2.5rem;
+    border-bottom: 5px solid var(--dark-color);
+    background-color: var(--transparent-color);
+    padding: 10px 100px;
+
+}
+
+.form_submit{
+    border: none;
+    height: 4%;
+    width: 30%;
+    font-size: 2.5rem;
+    align-self: center;
+}
+
+.hide{
+    opacity: 0;
+}
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
