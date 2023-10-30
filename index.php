@@ -1,7 +1,17 @@
 <?php
     require 'pets.php';
+    require 'dbConnection.php';
+    $message = $_GET['message'] ?? null;
     // Fixed RUT to test
     $getUserPet =  getUserPetsByRUT(238923984);
+
+    if($_SERVER['REQUEST_METHOD']=='POST'){
+        $id = filter_var($_POST['Pet_ID'], FILTER_VALIDATE_INT);
+        if ($id) {
+            deletePets($id);
+        }
+        $getUserPet =  getUserPetsByRUT(238923984);
+    }
 
 ?>
 
@@ -11,11 +21,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cards</title>
-    <link rel="stylesheet" href="views/petstyles.css">
-    
+    <link rel="stylesheet" href="views/petstyles.css">   
     <!-- importados -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 
@@ -33,11 +43,13 @@
 
     </header>
 
+    <?php if($message){echo $message;}?>
+
    
     <!-- to contain and control the cards -->
     <main id="cardmain">
         <!--🙌🏽 para ver el formulario, remover la clase 'hide'-->
-        <aside class="formdiv">
+        <aside class="formdiv hide">
             <h1 class="form_title">Conozcamos a tu peludito</h1>
             <p>¡Cuéntanos un poco sobre tu mascota para poder crear su ficha!</p>
             <form action="-" method="post" id="pet_form">
@@ -86,7 +98,14 @@
 
             <aside class="card-options">
                 <i onClick="editPost(this)" class="fas fa-edit"></i>
-                <i onClick="deletePost(this)" class="fas fa-trash-alt"></i>
+                <!-- <i onClick= "deletePets(<?php //echo $pet['pet_id']; ?>)"  class="fas fa-trash-alt"></i> -->
+                <form method="post">
+                <!-- action="index?mensaje=Entrada eliminada correctamente!" -->
+                    <input type="hidden" name="Pet_ID" value="<?php echo $pet['Pet_ID'];?>">
+                    <button type="submit" class="fa fa-trash rojo no-btn"></button>
+                </form>
+                
+
             </aside>
             </div> 
             <?php } ?>  

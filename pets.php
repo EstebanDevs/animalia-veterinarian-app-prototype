@@ -24,3 +24,20 @@ function getUserPetsByRUT($RUT)
         var_dump($error);
     }
 }
+
+function deletePets($id)
+{
+    try {
+        //Obtener conexion
+        require 'dbConnection.php';
+
+        //Consulta SQL
+        $sql = "DELETE FROM pets WHERE pet_id = {$id};";
+
+        //Ejecutar consulta
+        $query = mysqli_query($conn, $sql);
+        return $query;
+    } catch (\Throwable $thr) {
+        var_dump($thr);
+    }
+}
