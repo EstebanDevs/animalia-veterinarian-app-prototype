@@ -49,12 +49,14 @@
    
     <!-- to contain and control the cards -->
     <main id="cardmain">
+        <!-- ⭕create form -->
         <!--🙌🏽 para ver el formulario, remover la clase 'hide'-->
-        <aside class="formdiv">
+        <aside class="formdiv hide" id="addform">
+            <div class="closeBtn" id="closeAdd">X</div>
             <h1 class="form_title">Conozcamos a tu peludito</h1>
             <p>¡Cuéntanos un poco sobre tu mascota para poder crear su ficha!</p>
             <form action="create.php" method="post" id="pet_form">
-                  <input type="text" class="form_field" name="Name" required placeholder="Nombre" value="<?php echo $Name;?>" id="Name"><br><br>
+                <input type="text" class="form_field" name="Name" required placeholder="Nombre" value="<?php echo $Name;?>" id="Name"><br><br>
               
                 <div class="form_radio">
                   <label>Sexo:</label>
@@ -65,7 +67,7 @@
                 </div>
 
                   <input type="number" class="form_field" name="Age" required placeholder="Edad"><br><br>
-            
+                  
                   <!-- <input type="text" class="form_field" id="raza" name="raza" placeholder="Raza"><br><br> -->
               
                   <!-- <input type="text" class="form_field" name="color" class="form_field" placeholder="Color"><br><br> -->
@@ -77,7 +79,39 @@
                   <input type="submit" value="Enviar" class="form_submit">
             </form> 
         </aside>
+        
+        
+          <!--🙌🏽 para ver el formulario de actualización, remover la clase 'hide'-->
+          <aside class="formdiv hide" id="updateform">
+          <div class="closeBtn" id="closeUpdate">X</div>
+            <h1 class="form_title">¿Cometiste algún error al rellenar la ficha de tu mascota?</h1>
+            <p>No te preocupes, actualiza los campos a continuación para corregirlo.</p>
+            <form action="../controllers/updatePet.php" method="post" id="pet_form" class="updateForm">
+                  <input type="text" class="form_field" name="Name" required placeholder="Nombre"><br><br>
+                    <input type="number" name="PetID" id="PetID" hidden>
+                <div class="form_radio">
+                  <label>Sexo:</label>
+                  <input type="radio" id="macho" name="Sex" value="Macho">
+                  <label for="macho">Macho</label>
+                  <input type="radio" id="hembra" name="Sex" value="Hembra">
+                  <label for="hembra">Hembra</label><br><br>
+                </div>
+
+                  <input type="number" class="form_field" name="Age" required pattern="\d+" placeholder="Edad"><br><br>
+            
+                  <!-- <input type="text" class="form_field" id="raza" name="Raza" placeholder="Raza"><br><br> -->
+              
+                  <!-- <input type="text" class="form_field" name="color" class="form_field" placeholder="Color"><br><br> -->
+              
+                    <!-- 🐱‍👤tipo de animal y registro medico pendientes -->
+                  <!-- <label for="enfermedad">¿Tiene alguna enfermedad?</label>
+                  <textarea id="enfermedad" name="enfermedad"></textarea><br><br> -->
+              
+                  <input type="submit" value="Actualizar" class="form_submit">
+            </form> 
+        </aside>
     
+   
 
         <?php 
             while($pet = mysqli_fetch_assoc($getUserPet)){ ?>
@@ -98,12 +132,12 @@
             </div>
 
             <aside class="card-options">
-                <i onClick="editPost(this)" class="fas fa-edit"></i>
+                <i onClick="editPet(this)" class="fas fa-edit editbtn"></i>
                 <!-- <i onClick= "deletePets(<?php //echo $pet['pet_id']; ?>)"  class="fas fa-trash-alt"></i> -->
                 <form method="post">
                 <!-- action="index?mensaje=Entrada eliminada correctamente!" -->
                     <input type="hidden" name="Pet_ID" value="<?php echo $pet['Pet_ID'];?>">
-                    <button type="submit" class="fa fa-trash icon-btn"></button>
+                    <button type="submit" class="icon-btn"><p class="fa fa-trash"></p></button>
                 </form>
                 
 
@@ -113,11 +147,13 @@
     </main>
 
         <!-- 🐱‍👤 (otra cosa que no logre decifrar, igual que mi vida jasj)el beat solo con el hover -->
-    <div class="addbtn">
+    <div id="addbtn">
         <!-- <span class="material-symbols-outlined btn_heart">
         favorite</span> -->
         <p class='btn_element'><strong>+</strong></p>
     </div>
+
+    <script src="app.js"></script>
     
 </body>
 </html>
