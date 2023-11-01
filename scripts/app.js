@@ -1,5 +1,7 @@
 var lastPetCard = '';
 
+let closebtn = document.querySelectorAll(".closeBtn");
+
 //Formulario de actualización
 const editPetForm = document.getElementById('updateform');
 
@@ -27,6 +29,7 @@ function addPet(){
     }
     
     //Mostrar el formulario
+    addPetForm.classList.add("slideInUp");
     addPetForm.classList.remove("hide");
 }
 
@@ -38,6 +41,7 @@ function editPet(element){
     }
     
     //Mostrar el formulario
+    // addPetForm.classList.add("slideInUp")
     editPetForm.classList.remove("hide");
     
     //Traer los elementos que contienen los datos que se encuentran en la ficha y la ficha que los contiene
@@ -47,7 +51,6 @@ function editPet(element){
     let name = element.parentElement.previousElementSibling.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling;
     let sex = element.parentElement.previousElementSibling.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.nextElementSibling;
     let age = element.parentElement.previousElementSibling.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling;
-    console.log(card, id, name.innerHTML, sex, age);
 
 
     //Poner los datos de la ficha de la mascota en su respectivo campo en el form de actualización
@@ -67,7 +70,26 @@ function editPet(element){
 
     //Eliminar la ficha de la lista
     card.remove();
-    console.log(card);
 }
 
+function closeForms(){
+    if(!editPetForm.classList.contains('hide')){
+        editPetForm.classList.remove('slideInUp');
+        editPetForm.classList.add('hide');
+        redrawPetCard(lastPetCard);
+        console.log("edit");
+    }
+
+    if(!addPetForm.classList.contains('hide')){
+        addPetForm.classList.remove('slideInUp');
+        addPetForm.classList.add('hide');
+        console.log("add");
+    }
+
+
+}
+
+closebtn.forEach((div) => {
+    div.addEventListener('click', closeForms);
+});
 

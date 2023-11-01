@@ -61,6 +61,7 @@
     <main id="cardmain">
         <!--🙌🏽 para ver el formulario, remover la clase 'hide'-->
         <aside class="formdiv hide" id='addform'>
+            <div class="closeBtn" id="closeAdd">X</div>
             <h1 class="form_title">Conozcamos a tu peludito</h1>
             <p>¡Cuéntanos un poco sobre tu mascota para poder crear su ficha!</p>
             <form action="../controllers/addPet.php" method="post" id="pet_form">
@@ -90,6 +91,7 @@
 
         <!--🙌🏽 para ver el formulario de actualización, remover la clase 'hide'-->
         <aside class="formdiv hide" id="updateform">
+            <div class="closeBtn" id="closeUpdate">X</div>
             <h1 class="form_title">¿Cometiste algún error al rellenar la ficha de tu mascota?</h1>
             <p>No te preocupes, actualiza los campos a continuación para corregirlo.</p>
             <form action="../controllers/updatePet.php" method="post" id="pet_form" class="updateForm">
